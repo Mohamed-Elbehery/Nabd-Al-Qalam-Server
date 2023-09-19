@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   ecommerce_index,
   ecommerce_add,
-} = require("../controllers/ecommerceControllers");
+} = require("../controllers/booksControllers");
 
 router.get("/", ecommerce_index);
 router.post("/add-books", ecommerce_add);

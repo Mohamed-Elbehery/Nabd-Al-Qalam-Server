@@ -2,9 +2,10 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const routes = require("./routes/booksRoutes");
+const authRouter = require("./routes/authRoutes");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const routes = require("./routes/ecommerceRoutes");
 require("dotenv").config();
 
 // Initialize App and Listen to the PORT
@@ -14,16 +15,11 @@ const app = express();
 app.use(express.static("public"));
 app.use(morgan("dev"));
 app.use(cors());
+
+//TODO Parse Body and Configure the limit size of the data
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json({ limit: "50mb" }));
-//TODO Don't Forget That
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-    parameterLimit: 100000,
-    limit: "500mb",
-  })
-);
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 mongoose
@@ -45,3 +41,4 @@ mongoose
   });
 
 app.use("/", routes);
+app.use("/", authRouter);

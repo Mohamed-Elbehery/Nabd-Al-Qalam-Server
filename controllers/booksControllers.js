@@ -1,4 +1,4 @@
-const Book = require("../models/ecommerce");
+const Book = require("../models/books");
 const { cloudinary } = require("../utils/cloudinary");
 
 //! Controllers

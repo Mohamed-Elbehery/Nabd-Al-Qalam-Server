@@ -20,7 +20,6 @@ const ecommerce_add = async (req, res) => {
     });
 
     const body = await { ...req.body, img: uploadedResponse?.url };
-    console.log(uploadedResponse?.url);
 
     const newBook = await Book.create(body);
     newBook.save();

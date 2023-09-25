@@ -1,8 +1,8 @@
-const Book = require("../models/books");
+const Book = require("../models/books.model");
 const { cloudinary } = require("../utils/cloudinary");
 
 //! Controllers
-const ecommerce_index = (req, res) => {
+const books_index = (req, res) => {
   Book.find()
     .sort({ createdAt: -1 })
     .then((result) => {
@@ -13,7 +13,7 @@ const ecommerce_index = (req, res) => {
     });
 };
 
-const ecommerce_add = async (req, res) => {
+const books_add = async (req, res) => {
   try {
     const uploadedResponse = await cloudinary.uploader.upload(req.body.img, {
       upload_preset: "nabdu_al_qalam",
@@ -30,6 +30,6 @@ const ecommerce_add = async (req, res) => {
 };
 
 module.exports = {
-  ecommerce_index,
-  ecommerce_add,
+  books_index,
+  books_add,
 };

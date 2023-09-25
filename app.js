@@ -2,11 +2,12 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const routes = require("./routes/booksRoutes");
-const authRouter = require("./routes/authRoutes");
+const routes = require("./routes/books.routes");
+const authRouter = require("./routes/auth.routes");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
+const usersRouter = require("./routes/users.routes");
 require("dotenv").config();
 
 // Initialize App and Listen to the PORT
@@ -44,20 +45,4 @@ mongoose
 
 app.use("/", routes);
 app.use("/", authRouter);
-
-app.get("/set-cookies", (req, res) => {
-  res.cookie("newUser", true, {
-    maxAge: 1000 * 60 * 60 * 24,
-    httpOnly: true,
-  });
-
-  res.send("You Got the Cookies!!");
-});
-
-app.get("/read-cookies", (req, res) => {
-  const cookies = req.cookies;
-
-  console.log(cookies);
-
-  res.json(cookies);
-});
+app.use("/", usersRouter);

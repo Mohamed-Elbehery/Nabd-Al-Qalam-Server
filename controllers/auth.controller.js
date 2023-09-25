@@ -1,5 +1,5 @@
-const User = require("../models/auth");
-const jwt = require("jsonwebtoken")
+const User = require("../models/auth.model");
+const jwt = require("jsonwebtoken");
 const maxAge = 3 * 24 * 60 * 60;
 
 // Handling Errors
@@ -28,30 +28,33 @@ const signup_post = async (req, res) => {
   try {
     const user = await User.create({ email, password });
     const token = createToken(user._id);
-    res.cookie('jwt', token, { maxAge: maxAge * 1000});
+    res.cookie("jwt", token, { maxAge: maxAge * 1000 });
     res.status(201).json({ user: user._id, token });
   } catch (err) {
     const errors = handleErrors(err);
-    res.status(400).json(errors);
+    res.status(400).json({ errors });
   }
 };
 
 const createToken = (id) => {
-  /*
-    todo =>    jwt.sign({
-    todo =>      payload: value,
-    todo =>      secret: value,
-    todo =>      options: value,
-    todo =>    })
+  return jwt.sign({ id }, "mySecretKey", {
+    expiresIn: maxAge,
+  });
+};
 
-    !     this will return the signature token
-  */
+const login_post = async (req, res) => {
+  console.log("login");
+  const { email, password } = req.body;
 
-  return jwt.sign({ id }, 'mySecretKey', {
-    expiresIn: maxAge
-  })
-}
-
-const login_post = async (req, res) => {};
+  try {
+    const user = await User.login(email, password);
+    const token = createToken(user._id);
+    res.cookie("jwt", token, { maxAge: maxAge * 1000 });
+    res.status(200).json({ user: user._id, token });
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+};
 
 module.exports = { signup_post, login_post };

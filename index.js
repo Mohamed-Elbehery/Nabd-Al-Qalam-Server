@@ -15,10 +15,6 @@ const app = express();
 const whitelistedDomains = [
   `http://localhost:${process.env.CLIENT_PORT}`,
   "https://nabd-al-qalam.vercel.app/",
-  "https://nabd-al-qalam.vercel.app/books",
-  "https://nabd-al-qalam.vercel.app/login",
-  "https://nabd-al-qalam.vercel.app/signup",
-  "https://nabd-al-qalam.vercel.app/add-books",
 ];
 
 // Static Files and Middlewares
@@ -26,7 +22,6 @@ app.use(express.static("public"));
 app.use(morgan("dev"));
 app.use(
   cors({
-    // origin: `http://localhost:${process.env.CLIENT_PORT}`,
     origin: function (origin, callback) {
       if (whitelistedDomains.indexOf(origin) !== -1 || !origin) {
         callback(null, true);

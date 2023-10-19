@@ -9,6 +9,10 @@
       {
         "name": "access-control-allow-origin",
         "value": "https://nabd-al-qalam.vercel.app/books"
+      },
+      {
+        "name": "content-security-policy",
+        "value": "default-src data: https://www.google-analytics.com"
       }
     ]
   }

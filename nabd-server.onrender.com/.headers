@@ -1,0 +1,15 @@
+[
+  {
+    "applyTo": "index.html",
+    "headers": [
+      {
+        "name": "origin",
+        "value": "https://nabd-al-qalam.vercel.app/books"
+      },
+      {
+        "name": "access-control-allow-origin",
+        "value": "https://nabd-al-qalam.vercel.app/books"
+      }
+    ]
+  }
+]

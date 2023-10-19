@@ -12,13 +12,26 @@ require("dotenv").config();
 
 // Initialize App and Listen to the PORT
 const app = express();
+const whitelistedDomains = [
+  "https://nabd-al-qalam.vercel.app/",
+  "https://nabd-al-qalam.vercel.app/books",
+  "https://nabd-al-qalam.vercel.app/login",
+  "https://nabd-al-qalam.vercel.app/signup",
+  "https://nabd-al-qalam.vercel.app/add-books",
+];
 
 // Static Files and Middlewares
 app.use(express.static("public"));
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: "https://nabd-al-qalam.vercel.app/",
+    origin: function (origin, callback) {
+      if (whitelistedDomains.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST"],
   })
 );

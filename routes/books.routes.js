@@ -3,7 +3,15 @@ const router = express.Router();
 const cors = require("cors");
 const { books_index, books_add } = require("../controllers/books.controller");
 
-router.get("/", cors(), books_index);
-router.post("/add-books", cors(), books_add);
+router.get(
+  "/",
+  cors({ origin: "https://nabd-al-qalam.vercel.app" }),
+  books_index
+);
+router.post(
+  "/add-books",
+  cors({ origin: "https://nabd-al-qalam.vercel.app" }),
+  books_add
+);
 
 module.exports = router;

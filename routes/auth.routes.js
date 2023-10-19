@@ -3,7 +3,32 @@ const authRouter = express.Router();
 const cors = require("cors");
 const { signup_post, login_post } = require("../controllers/auth.controller");
 
-authRouter.post("/signup", cors(), signup_post);
-authRouter.post("/login", cors(), login_post);
+authRouter.options(
+  "/signup",
+  cors({ origin: "https://nabd-al-qalam.vercel.app" })
+);
+
+authRouter.post(
+  "/signup",
+  cors({ origin: "https://nabd-al-qalam.vercel.app" }),
+  signup_post
+);
+
+authRouter.options(
+  "/login",
+  cors({
+    origin: "https://nabd-al-qalam.vercel.app",
+    preflightContinue: true,
+  })
+);
+
+authRouter.post(
+  "/login",
+  cors({
+    origin: "https://nabd-al-qalam.vercel.app",
+    preflightContinue: true,
+  }),
+  login_post
+);
 
 module.exports = authRouter;

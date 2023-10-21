@@ -12,11 +12,11 @@ router.get(
 // https://nabd-al-qalam.vercel.app
 router.options(
   "/add-books",
-  cors({ origin: "https://nabd-al-qalam.vercel.app/add-books" })
+  cors({ origin: "https://nabd-al-qalam.vercel.app" })
 );
 router.post(
-  "/add-books",
-  cors({ origin: "https://nabd-al-qalam.vercel.app/add-books" }),
+  "",
+  cors({ origin: "https://nabd-al-qalam.vercel.app" }),
   books_add
 );
 

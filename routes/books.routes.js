@@ -9,14 +9,16 @@ router.get(
   books_index
 );
 
-// https://nabd-al-qalam.vercel.app
 router.options(
   "/add-books",
-  cors({ origin: "https://nabd-al-qalam.vercel.app/add-books" })
+  cors({ origin: "https://nabd-al-qalam.vercel.app", preflightContinue: true })
 );
 router.post(
   "/add-books",
-  cors({ origin: "https://nabd-al-qalam.vercel.app/add-books" }),
+  cors({
+    origin: "https://nabd-al-qalam.vercel.app",
+    preflightContinue: true,
+  }),
   books_add
 );
 

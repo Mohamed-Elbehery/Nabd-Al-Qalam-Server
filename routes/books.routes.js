@@ -11,6 +11,7 @@ router.get(
 
 router.options(
   "/add-books",
+<<<<<<< HEAD
   cors({ origin: "https://nabd-al-qalam.vercel.app", preflightContinue: true })
 );
 router.post(
@@ -19,6 +20,13 @@ router.post(
     origin: "https://nabd-al-qalam.vercel.app",
     preflightContinue: true,
   }),
+=======
+  cors({ origin: "https://nabd-al-qalam.vercel.app" })
+);
+router.post(
+  "",
+  cors({ origin: "https://nabd-al-qalam.vercel.app", preflightContinue: true, methods: ["GET", "POST"] }),
+>>>>>>> 48550632828c0b36b4f02b9eec07eefaacd30e7d
   books_add
 );
 

@@ -3,7 +3,6 @@ const User = require("../models/auth.model");
 const users_get = async (_, res) => {
   try {
     const users = await User.find();
-    console.log(users);
 
     res.status(200).json(users);
   } catch (err) {

@@ -1,11 +1,13 @@
 // Imports
 const express = require("express");
 const morgan = require("morgan");
-const routes = require("./routes/books.routes");
-const authRouter = require("./routes/auth.routes");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const routes = require("./routes/books.routes");
+const authRouter = require("./routes/auth.routes");
 const usersRouter = require("./routes/users.routes");
+const stripeRouter = require("./routes/checkout.routes");
+const cors = require("cors");
 const { connectToDB } = require("./utils/db");
 require("dotenv").config();
 
@@ -15,6 +17,7 @@ const app = express();
 // Static Files and Middlewares
 app.use(express.static("public"));
 app.use(morgan("dev"));
+app.use(cors());
 
 //TODO Parse Body and Configure the limit size of the data
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -34,3 +37,4 @@ try {
 app.use("/", routes);
 app.use("/", authRouter);
 app.use("/", usersRouter);
+app.use("/", stripeRouter);

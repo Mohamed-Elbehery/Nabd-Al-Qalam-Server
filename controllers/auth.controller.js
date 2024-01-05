@@ -23,6 +23,12 @@ const handleErrors = (err) => {
   return errors;
 };
 
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: maxAge,
+  });
+};
+
 const signup_post = async (req, res) => {
   const { email, password } = req.body;
 
@@ -35,12 +41,6 @@ const signup_post = async (req, res) => {
     const errors = handleErrors(err);
     res.status(400).json({ errors });
   }
-};
-
-const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: maxAge,
-  });
 };
 
 const login_post = async (req, res) => {

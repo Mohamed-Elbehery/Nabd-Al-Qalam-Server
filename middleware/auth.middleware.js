@@ -10,7 +10,6 @@ const requireAuth = (req, res, next) => {
       if (err) {
         res.redirce("/login");
       } else {
-        console.log(decodedToken);
         next();
       }
     });

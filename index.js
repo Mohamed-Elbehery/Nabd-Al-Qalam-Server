@@ -14,10 +14,23 @@ require("dotenv").config();
 // Initialize App and Listen to the PORT
 const app = express();
 
-// Static Files and Middlewares
+// Cors
+const whitelist = ["https://nabd-al-qalam.vercel.app", "http://localhost:5173"];
+const corsConfigs = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST"],
+};
+app.use(cors(corsConfigs));
+
+// Static Files, Logs and Middlewares
 app.use(express.static("public"));
 app.use(morgan("dev"));
-app.use(cors());
 
 //TODO Parse Body and Configure the limit size of the data
 app.use(express.urlencoded({ limit: "50mb", extended: true }));

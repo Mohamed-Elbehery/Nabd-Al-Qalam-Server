@@ -44,7 +44,6 @@ const createToken = (id) => {
 };
 
 const login_post = async (req, res) => {
-  console.log("login");
   const { email, password } = req.body;
 
   try {

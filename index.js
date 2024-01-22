@@ -19,7 +19,6 @@ const whitelist = [
   "https://nabd-al-qalam.vercel.app",
   "http://localhost:5173",
   "https://nabdalqalam.com",
-  "",
 ];
 const corsConfigs = {
   origin: (origin, callback) => {
@@ -31,7 +30,7 @@ const corsConfigs = {
   },
   methods: ["GET", "POST", "OPTIONS"],
 };
-app.use(cors());
+app.use(cors(corsConfigs));
 
 // Static Files, Logs and Middlewares
 app.use(express.static("public"));

@@ -15,7 +15,11 @@ require("dotenv").config();
 const app = express();
 
 // Cors
-const whitelist = ["https://nabd-al-qalam.vercel.app", "http://localhost:5173"];
+const whitelist = [
+  "https://nabd-al-qalam.vercel.app",
+  "http://localhost:5173",
+  "https://nabdalqalam.com",
+];
 const corsConfigs = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {

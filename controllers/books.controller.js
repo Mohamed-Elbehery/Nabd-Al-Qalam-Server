@@ -9,7 +9,7 @@ const books_index = (req, res) => {
       res.json(result);
     })
     .catch(() => {
-      res.send("Error");
+      res.status(400).send("Please Try Again Later <a href='https://nabdalqalam.com'>Click Here</a>");
     });
 };
 

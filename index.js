@@ -30,7 +30,7 @@ const corsConfigs = {
   },
   methods: ["GET", "POST", "OPTIONS"],
 };
-app.use(cors(corsConfigs));
+app.use(cors());
 
 // Static Files, Logs and Middlewares
 app.use(express.static("public"));
